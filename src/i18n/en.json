@@ -71,6 +71,16 @@
       "title": "Home the {0} axis (G28 {0})",
       "titleAll": "Home all axes (G28)"
     },
+    "zero": {
+      "move": "{0} to zero",
+      "moveAll": "All to zero",
+      "moveConfirm": "Move {0} to zero position",
+      "moveConfirmAll": "Move All to zero position",
+      "caption": "Zero {0}",
+      "captionAll": "Zero All",
+      "title": "Zero the {0} axis (G10 L20 {0}0)",
+      "titleAll": "Zero all axes (G10 L20)"
+    },
     "newDirectory": {
       "caption": "New Directory"
     },
@@ -932,6 +942,9 @@
     },
     "autoUpdate": {
       "menuCaption": "Update"
+    },
+    "cncViewer": {
+      "caption": "CNC Viewer"
     },
     "gcodeViewer": {
       "caption": "G-Code Viewer",

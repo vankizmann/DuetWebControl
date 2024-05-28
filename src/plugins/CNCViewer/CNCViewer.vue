@@ -6,10 +6,13 @@
 
   <v-container>
     <v-row>
-      <v-col cols="12" class="pt-0 pb-0">
+      <v-col cols="6" class="pt-0 pb-0">
         <cnc-move-axis-panel class="mb-2" />
       </v-col>
-      <v-col cols="12" md="9" v-if="false">
+      <v-col cols="6" class="pt-0 pb-0">
+        <cnc-3d-viewer :file="file" extension="gcode" />
+      </v-col>
+      <v-col cols="6" md="6" v-if="false">
         <v-row dense>
           <v-col cols="12">
             {{ loop }}
@@ -34,10 +37,14 @@ import store from "@/store";
 import { MachineEvent } from "@/store/machine";
 import { mapState } from "vuex";
 import ObjectModel from "@duet3d/objectmodel";
+const benchy = require('arraybuffer-loader!./benchy.gcode');
+const holes = require('arraybuffer-loader!./CutManyHoles.cnc.gcode');
 
 export default Vue.extend({
   data() {
-    return {};
+    return {
+      file: holes
+    };
   },
 
   computed: {
@@ -49,6 +56,7 @@ export default Vue.extend({
     },
   },
   mounted() {
+    console.log(this.file);
     store.commit('tooloffset/patch');
   },
 

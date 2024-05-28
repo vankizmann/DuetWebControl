@@ -3,6 +3,7 @@ import { registerRoute } from "@/routes";
 import store from "@/store";
 
 require('./panels/index');
+require('./viewer/index');
 
 registerRoute(CNCViewer, {
     Control: {

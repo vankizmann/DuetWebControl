@@ -53,7 +53,7 @@
     <v-card-text v-show="visibleAxes.length">
       <v-row>
 
-        <v-col cols="12" order="2" md="7" order-md="1">
+        <v-col cols="12" order="2" md="5" order-md="1">
           <v-row>
             <v-col sm="3" offset="3">
               <div class="move-square-div">
@@ -160,7 +160,7 @@
           </v-row>
         </v-col>
 
-        <v-col cols="12" order="1" md="4" order-md="2" offset-md="1">
+        <v-col cols="12" order="1" md="6" order-md="2" offset-md="1">
           <v-row dense>
             <v-col cols="12">
               <v-row style="margin-bottom: 30px;">
@@ -188,12 +188,15 @@
             </v-col>
             <v-col cols="12">
               <v-row>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="4">
+                  Workp/Machine
+                </v-col>
+                <v-col cols="12" sm="4">
                   <v-btn @click="() => setWorkplaceZero(null)" block class="move-btn">
                     {{ $t("panel.movement.setWorkXYZ") }}
                   </v-btn>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="4">
                   <code-btn block v-show="visibleAxes.length" color="primary" code="G28"
                             :title="$t('button.home.titleAll')" class="ml-0 move-btn">
                     {{ $t("button.home.captionAll") }}
@@ -201,12 +204,15 @@
                 </v-col>
               </v-row>
               <v-row v-for="(axis, axisIndex) in visibleAxes" :key="axisIndex">
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="4">
+                    {{ axis.userPosition }} / {{ axis.machinePosition }}
+                </v-col>
+                <v-col cols="12" sm="4">
                   <v-btn @click="() => setWorkplaceZero(axis.letter)" block class="move-btn">
                     {{ $t("button.zero.caption", [axis.letter]) }}
                   </v-btn>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="4">
                   <code-btn block :color="axis.homed ? 'primary' : 'warning'" :disabled="uiFrozen"
                             :title="$t('button.home.title', [/[a-z]/.test(axis.letter) ? `'${axis.letter}` : axis.letter])"
                             :code="`G28 ${/[a-z]/.test(axis.letter) ? '\'' : ''}${axis.letter}`" class="ml-0 move-btn">

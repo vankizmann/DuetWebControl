@@ -36,6 +36,22 @@
   height: 100% !important;
 }
 
+.cnc-user-pos {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cnc-machine-pos {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: #757575;
+  font-size: 18px;
+}
+
 .wcs-selection {
   max-width: 200px;
 }
@@ -51,9 +67,9 @@
                 hint="Work Coordinate System" @change="updateWorkplaceCoordinate" persistent-hint />
     </v-card-title>
     <v-card-text v-show="visibleAxes.length">
-      <v-row>
+      <v-row align="center">
 
-        <v-col cols="12" order="2" md="5" order-md="1">
+        <v-col cols="12" order="2" md="6" order-md="1">
           <v-row>
             <v-col sm="3" offset="3">
               <div class="move-square-div">
@@ -160,10 +176,10 @@
           </v-row>
         </v-col>
 
-        <v-col cols="12" order="1" md="6" order-md="2" offset-md="1">
+        <v-col cols="12" order="1" md="6" order-md="2">
           <v-row dense>
             <v-col cols="12">
-              <v-row style="margin-bottom: 30px;">
+              <v-row>
                 <v-col col="12" md="3">
                   <v-btn block class="select-btn" @click="prevStepsize">
                     <v-icon>mdi-chevron-left</v-icon>
@@ -187,32 +203,38 @@
               </v-row>
             </v-col>
             <v-col cols="12">
-              <v-row>
-                <v-col cols="12" sm="4">
-                  Workp/Machine
+              <v-row align="center">
+                <v-col cols="6" sm="3">
+                  <span class="cnc-user-pos">Work</span>
                 </v-col>
-                <v-col cols="12" sm="4">
+                <v-col cols="6" sm="3">
+                  <span class="cnc-machine-pos">Machine</span>
+                </v-col>
+                <v-col cols="12" sm="3">
                   <v-btn @click="() => setWorkplaceZero(null)" block class="move-btn">
                     {{ $t("panel.movement.setWorkXYZ") }}
                   </v-btn>
                 </v-col>
-                <v-col cols="12" sm="4">
+                <v-col cols="12" sm="3">
                   <code-btn block v-show="visibleAxes.length" color="primary" code="G28"
                             :title="$t('button.home.titleAll')" class="ml-0 move-btn">
                     {{ $t("button.home.captionAll") }}
                   </code-btn>
                 </v-col>
               </v-row>
-              <v-row v-for="(axis, axisIndex) in visibleAxes" :key="axisIndex">
-                <v-col cols="12" sm="4">
-                    {{ axis.userPosition }} / {{ axis.machinePosition }}
+              <v-row v-for="(axis, axisIndex) in visibleAxes" :key="axisIndex" align="center">
+                <v-col cols="6" sm="3">
+                  <span class="cnc-user-pos">{{ axis.userPosition }}</span>
                 </v-col>
-                <v-col cols="12" sm="4">
+                <v-col cols="6" sm="3">
+                  <span class="cnc-machine-pos">{{ axis.machinePosition }}</span>
+                </v-col>
+                <v-col cols="12" sm="3">
                   <v-btn @click="() => setWorkplaceZero(axis.letter)" block class="move-btn">
                     {{ $t("button.zero.caption", [axis.letter]) }}
                   </v-btn>
                 </v-col>
-                <v-col cols="12" sm="4">
+                <v-col cols="12" sm="3">
                   <code-btn block :color="axis.homed ? 'primary' : 'warning'" :disabled="uiFrozen"
                             :title="$t('button.home.title', [/[a-z]/.test(axis.letter) ? `'${axis.letter}` : axis.letter])"
                             :code="`G28 ${/[a-z]/.test(axis.letter) ? '\'' : ''}${axis.letter}`" class="ml-0 move-btn">
@@ -379,9 +401,7 @@ export default Vue.extend({
         if ( value.value == this.currentStepsize ) target = index;
       });
 
-      if ( target === 0 ) {
-        target = this.stepsizeItems.length-1;
-      } else {
+      if ( target !== 0 ) {
         target = target - 1;
       }
 
@@ -395,9 +415,7 @@ export default Vue.extend({
         if ( value.value == this.currentStepsize ) target = index;
       });
 
-      if ( target >= this.stepsizeItems.length - 1 ) {
-        target = 0;
-      } else {
+      if ( target < this.stepsizeItems.length - 1 ) {
         target = target + 1;
       }
 

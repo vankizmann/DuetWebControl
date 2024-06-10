@@ -694,7 +694,7 @@
       "noAxes": "Nincsenek tengelyek",
       "set": "{0} beállítása",
       "workzero": "Vissza a nullpontra",
-      "setWorkXYZ": "Set Work XYZ"
+      "setWorkXYZ": "Zero XYZ"
     },
     "settingsAbout": {
       "buildDateTime": "Készült: {0}",

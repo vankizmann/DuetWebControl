@@ -1,7 +1,7 @@
 <style>
 .vue-3d-viewer {
   display: block;
-  width: 700px !important;
+  width: 100% !important;
   height: 500px !important;
 }
 </style>
@@ -187,8 +187,6 @@ export default Vue.extend({
       update.rotation(this.rotation);
       update.scale(this.scale);
 
-      console.log('done');
-
       this.$emit('done');
     },
     plane: {
@@ -225,11 +223,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style>
-.vue-3d-viewer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-</style>

@@ -704,7 +704,7 @@
       "noAxes": "No Axes",
       "set": "Set {0}",
       "workzero": "Go To Zero",
-      "setWorkXYZ": "Set Work XYZ"
+      "setWorkXYZ": "Zero XYZ"
     },
     "settingsAbout": {
       "buildDateTime": "Built on {0}",

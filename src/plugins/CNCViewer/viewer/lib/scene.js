@@ -98,7 +98,7 @@ export const setup = async (canvas, plane, theme) => {
 
     //Camera
     state.camera = new PerspectiveCamera(20, state.canvas.clientWidth / state.canvas.clientHeight, 0.1, 200);
-    state.camera.position.set(0, 100, 0);
+    state.camera.position.set(0, 50, 50);
     state.camera.lookAt( state.scene.position );
 
     //Orbit controls
@@ -109,9 +109,9 @@ export const setup = async (canvas, plane, theme) => {
     state.controls.minPolarAngle = 0;
     state.controls.maxPolarAngle = Math.PI;
     state.controls.mouseButtons = {
-        LEFT: MOUSE.PAN,
+        LEFT: MOUSE.ROTATE,
         MIDDLE: MOUSE.DOLLY,
-        RIGHT: MOUSE.ROTATE
+        RIGHT: MOUSE.PAN
     };
 
     //Animation loop

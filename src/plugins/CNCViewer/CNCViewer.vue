@@ -4,12 +4,12 @@
 
 <template>
 
-  <v-container>
+  <div style="margin: 30px 0;">
     <v-row>
-      <v-col cols="6" class="pt-0 pb-0">
+      <v-col cols="12" class="pt-0 pb-0">
         <cnc-move-axis-panel class="mb-2" />
       </v-col>
-      <v-col cols="6" class="pt-0 pb-0">
+      <v-col cols="12" class="pt-0 pb-0">
         <cnc-3d-viewer :file="file" extension="gcode" />
       </v-col>
       <v-col cols="6" md="6" v-if="false">
@@ -27,7 +27,7 @@
       </v-col>
     </v-row>
 
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

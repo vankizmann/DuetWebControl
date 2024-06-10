@@ -54,9 +54,9 @@ export const drill = ({X, Y, Z}) =>
   state.drill.material.transparent = true;
   state.drill.material.opacity = 0.7;
 
-  state.drill.position.x = X * -0.1;
+  state.drill.position.x = X * 0.1;
   state.drill.position.y = (Z * 0.1) + 1;
-  state.drill.position.z = Y * 0.1;
+  state.drill.position.z = Y * -0.1;
 };
 
 export const rotation = ({X, Y, Z}) =>

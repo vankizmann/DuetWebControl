@@ -115,6 +115,7 @@ export const theme = theme =>
 
 export const camera = (X = 0, Y = -50, Z = 50) =>
 {
+    state.controls.reset();
     state.camera.position.set(X, Z, Y);
-    state.camera.lookAt(state.scene.position);
+    state.controls.update();
 }

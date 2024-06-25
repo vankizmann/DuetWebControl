@@ -188,4 +188,9 @@ export default {
     margin-right: 10px;
 }
 
+.cnc-gcode-viewer__toolbar i {
+    margin-right: 8px;
+    font-size: 18px !important;
+}
+
 </style>

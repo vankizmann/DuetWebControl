@@ -214,9 +214,6 @@ export default Vue.extend({
   {
     return (
         <div class="mahwraap">
-          <div>
-
-          </div>
           <div class="vue-3d-viewer" ref="canvas" />
         </div>
     )

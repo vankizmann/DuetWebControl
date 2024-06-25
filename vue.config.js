@@ -88,7 +88,8 @@ module.exports = {
                 {
                     test: /\.m?js$/,
                     include: [
-                        path.resolve(__dirname, './node_modules/@kizmann/pico-js/src'),
+                        path.resolve(__dirname, './node_modules/@kizmann/nano-ui'),
+                        path.resolve(__dirname, './node_modules/@kizmann/pico-js'),
                     ],
                     type: 'javascript/auto'
                 },

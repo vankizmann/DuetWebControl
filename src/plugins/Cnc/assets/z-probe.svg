@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 291.4714 393.5652">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Unbenannter_Verlauf_105-2);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Unbenannter_Verlauf_105-3);
+      }
+
+      .cls-3 {
+        fill: url(#Unbenannter_Verlauf_115);
+      }
+
+      .cls-4 {
+        fill: url(#Unbenannter_Verlauf_116);
+      }
+
+      .cls-5 {
+        fill: url(#Unbenannter_Verlauf_105);
+      }
+
+      .cls-6 {
+        fill: #1976d2;
+      }
+
+      .cls-7 {
+        opacity: .2;
+      }
+
+      .cls-8 {
+        opacity: .3;
+      }
+    </style>
+    <linearGradient id="Unbenannter_Verlauf_115" data-name="Unbenannter Verlauf 115" x1="145.5493" y1="304.4154" x2="145.5493" y2="236.6514" gradientUnits="userSpaceOnUse">
+      <stop offset=".1985" stop-color="#1976d2"/>
+      <stop offset=".4044" stop-color="rgba(25, 118, 210, .6774)" stop-opacity=".6774"/>
+      <stop offset=".6105" stop-color="rgba(25, 118, 210, .3882)" stop-opacity=".3882"/>
+      <stop offset=".7854" stop-color="rgba(25, 118, 210, .1776)" stop-opacity=".1776"/>
+      <stop offset=".9208" stop-color="rgba(25, 118, 210, .0481)" stop-opacity=".0481"/>
+      <stop offset="1" stop-color="#1976d2" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="Unbenannter_Verlauf_105" data-name="Unbenannter Verlauf 105" x1="111.0737" y1="66.0989" x2="178.4062" y2="66.0989" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1976d2" stop-opacity=".6"/>
+      <stop offset=".1481" stop-color="rgba(25, 118, 210, .6653)" stop-opacity=".6653"/>
+      <stop offset=".4295" stop-color="rgba(25, 118, 210, .7641)" stop-opacity=".7641"/>
+      <stop offset=".6161" stop-color="#1976d2" stop-opacity=".8"/>
+      <stop offset=".7831" stop-color="rgba(25, 118, 210, .78)" stop-opacity=".78"/>
+      <stop offset=".9568" stop-color="rgba(25, 118, 210, .7206)" stop-opacity=".7206"/>
+      <stop offset="1" stop-color="#1976d2" stop-opacity=".7"/>
+    </linearGradient>
+    <linearGradient id="Unbenannter_Verlauf_105-2" data-name="Unbenannter Verlauf 105" x1="111.4651" y1="196.6411" x2="178.7976" y2="196.6411" xlink:href="#Unbenannter_Verlauf_105"/>
+    <linearGradient id="Unbenannter_Verlauf_105-3" data-name="Unbenannter Verlauf 105" x1="111.0737" y1="150.3834" x2="178.4062" y2="150.3834" xlink:href="#Unbenannter_Verlauf_105"/>
+    <linearGradient id="Unbenannter_Verlauf_116" data-name="Unbenannter Verlauf 116" x1="145.7357" y1="393.5652" x2="145.7357" y2="345.2993" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1976d2" stop-opacity=".6"/>
+      <stop offset=".2404" stop-color="rgba(25, 118, 210, .6653)" stop-opacity=".6653"/>
+      <stop offset=".6972" stop-color="rgba(25, 118, 210, .7641)" stop-opacity=".7641"/>
+      <stop offset="1" stop-color="#1976d2" stop-opacity=".8"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <rect class="cls-3" x="140.1148" y="236.6514" width="10.869" height="67.764"/>
+    <polygon class="cls-6" points="145.5493 312.1028 121.8769 288.4251 129.5616 280.7403 145.5493 296.7281 161.537 280.7403 169.2217 288.4251 145.5493 312.1028"/>
+  </g>
+  <g>
+    <path class="cls-5" d="M143.174,0c-12.9376,0-24.4902,1.3409-32.1003,3.442v101.8909c8.0922,3.1627,17.2664,6.6578,26.9718,10.1902,14.7211,5.358,29.089,11.5394,40.3607,16.6748V4.4329c-7.3268-2.661-20.3624-4.4329-35.2322-4.4329Z"/>
+    <path class="cls-1" d="M178.7976,195.3978c-8.0295-3.1352-17.1757-6.616-26.9716-10.1814-14.9263-5.4327-29.2005-11.5632-40.3609-16.6475v43.2433c8.0924,3.1627,17.2664,6.6576,26.9718,10.1902,2.4245.8825,4.8308,1.7922,7.224,2.7109l32.7453-8.3713.3914-1.0583v-19.886Z"/>
+    <g class="cls-8">
+      <path class="cls-6" d="M138.4369,115.5231c-5.259-1.9141-10.3532-3.8151-15.2126-5.6603-4.2652,1.7995-8.3348,3.6208-12.1506,5.4086v.0579c11.1603,5.0843,25.4344,11.2148,40.3608,16.6475,5.3828,1.9592,10.5592,3.8902,15.4722,5.7549,4.0141-1.7133,7.8693-3.4491,11.4996-5.1579v-.5526c-11.2135-5.1008-25.4131-11.2001-39.9693-16.4981Z"/>
+    </g>
+    <path class="cls-2" d="M138.0454,168.7627c14.7211,5.358,29.0892,11.5394,40.3608,16.6749v-43.2794c-8.0296-3.1352-17.1758-6.616-26.9717-10.1814-14.9263-5.4328-29.2005-11.5632-40.3608-16.6475v43.2434c8.0923,3.1626,17.2664,6.6576,26.9717,10.1901Z"/>
+    <g class="cls-8">
+      <path class="cls-6" d="M138.4369,168.7627c-5.259-1.9141-10.3532-3.8151-15.2126-5.6603-4.2652,1.7995-8.3348,3.6208-12.1506,5.4086v.0579c11.1603,5.0843,25.4344,11.2148,40.3608,16.6475,5.3828,1.9592,10.5592,3.8902,15.4722,5.7549,4.0141-1.7133,7.8693-3.4491,11.4996-5.1579v-.5526c-11.2135-5.1008-25.4131-11.2001-39.9693-16.4981Z"/>
+    </g>
+  </g>
+  <g>
+    <rect class="cls-4" y="345.2993" width="291.4714" height="48.2659"/>
+    <g class="cls-7">
+      <polygon class="cls-6" points="224.4366 284.3253 67.0347 284.3253 0 345.2993 291.4714 345.2993 224.4366 284.3253"/>
+    </g>
+  </g>
+  <path class="cls-6" d="M239.3126,245.9385h44.3252v17.1953h-72.2197v-11.7822l44.1982-63.6851h-44.4531v-17.2588h72.0283v11.4634l-43.8789,64.0674Z"/>
+</svg>

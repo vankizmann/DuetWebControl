@@ -1,6 +1,7 @@
 import "@mdi/font/css/materialdesignicons.css";
 import Vue from "vue";
 import Vuetify from "vuetify";
+const ctor = require("@kizmann/nano-ui/src/mixins/src/ctor.js");
 
 import i18n from "./i18n";
 import store from "./store";
@@ -12,13 +13,13 @@ import "./registerServiceWorker";
 
 import App from "./App.vue";
 
-const global = window;
-
 // Enable compatibilty mode for array updates for @duet3d/objectmodel library
 (window as any)._duetModelSetArray = (array: object, index: string | number, value: any) => Vue.set(array, index, value);
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
+
+Vue.prototype.ctor = ctor.default.ctor;
 
 export default new Vue({
 	el: "#app",

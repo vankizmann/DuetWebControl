@@ -109,6 +109,7 @@ import store from "@/store";
 import { DashboardMode } from "@/store/settings";
 import { isPrinting } from "@/utils/enums";
 import { LogType } from "./utils/logging";
+import { Arr, Obj } from "@kizmann/pico-js";
 
 export default Vue.extend({
 	computed: {
@@ -120,9 +121,9 @@ export default Vue.extend({
 		injectedComponents(): Array<{ name: string, component: Component }> { return store.state.uiInjection.injectedComponents; },
 		model(): ObjectModel { return store.state.machine.model; },
 		categories(): Array<MenuCategory> {
-			return Object.keys(Menu)
-				.map(key => Menu[key])
-				.filter(item => item.pages.some(page => page.condition));
+			return Arr.filter(Arr.sort(Menu, 'order'), (item:MenuCategory) => {
+                return item.pages.some(page => page.condition);
+            });
 		},
 		currentPageCondition(): boolean {
 			const currentRoute = this.$route;

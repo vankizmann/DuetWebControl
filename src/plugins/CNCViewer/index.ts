@@ -1,18 +1,42 @@
 import CNCViewer from "./CNCViewer.vue"
-import { registerRoute } from "@/routes";
+import { registerCategory, registerRoute } from "@/routes";
 import store from "@/store";
 
 require('./panels/index');
 require('./viewer/index');
 
-registerRoute(CNCViewer, {
-    Control: {
-        CNCViewer: {
-            icon: 'mdi-drag-variant',
-            caption: 'plugins.cncViewer.caption',
-            path: '/Plugins/CNCViewer',
+registerCategory('Cnc', 'mdi-ruler-square-compass', 'CNC', false, 500).then(() => {
+
+    registerRoute(CNCViewer, {
+        Cnc: {
+            CncControl: {
+                icon: 'mdi-drag-variant',
+                caption: 'Control',
+                path: '/Cnc/Control2',
+            }
         },
-    },
+    });
+
+    // registerRoute(CNCViewer, {
+    //     Cnc: {
+    //         CncViewer: {
+    //             icon: 'mdi-vector-curve',
+    //             caption: 'Viewer',
+    //             path: '/Cnc/Viewer',
+    //         }
+    //     },
+    // });
+
+    // registerRoute(CNCViewer, {
+    //     Cnc: {
+    //         CncWorkpiece: {
+    //             icon: 'mdi-ruler-square',
+    //             caption: 'Workpiece',
+    //             path: '/Cnc/Workpiece',
+    //         },
+    //     },
+    // });
+
 });
 
 interface Tooloffset {

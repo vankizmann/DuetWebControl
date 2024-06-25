@@ -16,6 +16,16 @@ export default initCollection(DwcPlugin, [
         )
     },
 	{
+        id: "Cnc",
+        name: "CNC Control",
+        author: "Eduard Kizmann",
+        version: "3.5.1",
+        loadDwcResources: () => import(
+            /* webpackChunkName: "Cnc" */
+            "./Cnc/index"
+        )
+    },
+	{
         id: "GCodeViewer",
         name: "G-Code Viewer",
         author: "Juan Rosario",

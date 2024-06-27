@@ -9,12 +9,12 @@ export default {
 
         async turnOn()
         {
-            await store.dispatch("machine/sendCode", `M98 P"cnc-light-on.g"`);
+            await store.dispatch("machine/sendCode", `M98 P"cnc/light-on.g"`);
         },
 
         async turnOff()
         {
-            await store.dispatch("machine/sendCode",`M98 P"cnc-light-off.g"`);
+            await store.dispatch("machine/sendCode",`M98 P"cnc/light-off.g"`);
         }
 
     },

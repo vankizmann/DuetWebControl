@@ -19,14 +19,12 @@ export default {
 
     },
 
-    data()
-    {
-        return {
-            size: 0
-        };
-    },
-
     computed: {
+
+        size()
+        {
+            return store.state.cnc_settings.drill;
+        },
 
         uiFrozen() {
             return store.getters["uiFrozen"];
@@ -38,7 +36,7 @@ export default {
 
         async sendAction(action)
         {
-            let code = `M98 P"cnc-probe-${action}.g" S100 ` +
+            let code = `M98 P"cnc/probe-${action}.g" S100 ` +
                 `D${this.size} R${this.size/2}`;
 
             await store.dispatch("machine/sendCode", code);
@@ -56,7 +54,7 @@ export default {
                 target = target + 1;
             }
 
-            this.size = this.sizes[target];
+            store.commit('cnc_settings/updateDrill', this.sizes[target]);
         },
 
         stepDown()
@@ -71,7 +69,7 @@ export default {
                 target = target - 1;
             }
 
-            this.size = this.sizes[target];
+            store.commit('cnc_settings/updateDrill', this.sizes[target]);
         }
 
     },

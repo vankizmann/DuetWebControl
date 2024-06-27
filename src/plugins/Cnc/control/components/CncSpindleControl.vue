@@ -1,11 +1,23 @@
 <script lang="jsx">
 import store from "@/store";
 import { SpindleState } from "@duet3d/objectmodel";
-import { Num, Arr } from "@kizmann/pico-js";
+import { Num, Arr, Any } from "@kizmann/pico-js";
 
 export default {
 
     name: 'CncSpindleControl',
+
+    props: {
+
+        stepSize: {
+            default()
+            {
+                return 200;
+            },
+            type: [Number]
+        }
+
+    },
 
     computed: {
 
@@ -35,13 +47,37 @@ export default {
             return (spindle.state == SpindleState.forward) || (spindle.state == SpindleState.reverse);
         },
 
+        async increaseSpeed(spindle, index)
+        {
+            let code = `M3 P${index} S${spindle.current + this.stepSize}`;
+
+            if ( spindle.state == SpindleState.reverse ) {
+                code = `M4 P${index} S${spindle.current + this.stepSize}`;
+            }
+
+            console.log(code);
+
+            await store.dispatch("machine/sendCode", code);
+        },
+
+        async decreaseSpeed(spindle, index)
+        {
+            let code = `M3 P${index} S${spindle.current - this.stepSize}`;
+
+            if ( spindle.state == SpindleState.reverse ) {
+                code = `M4 P${index} S${spindle.current - this.stepSize}`;
+            }
+
+            await store.dispatch("machine/sendCode", code);
+        },
+
     },
 
     renderSpindle(spindle, index)
     {
-        spindle = Object.assign(spindle || {}, {
-            current: 10000
-        });
+        if ( Any.isEmpty(spindle) ) {
+            spindle = { current: 10000 };
+        }
 
         let value = Num.format(spindle.current, '.', ' ', 0);
 
@@ -54,10 +90,10 @@ export default {
                     <span>{this.$t(':value RPM').replace(':value', value)}</span>
                 </div>
                 <div class="cnc-spindle-control__button">
-                    <vBtn disabled={this.uiFrozen}>-</vBtn>
+                    <vBtn disabled={this.uiFrozen || !spindle.current } on-click={()=> this.decreaseSpeed(spindle, index)}>-</vBtn>
                 </div>
                 <div class="cnc-spindle-control__button">
-                    <vBtn disabled={this.uiFrozen}>+</vBtn>
+                    <vBtn disabled={this.uiFrozen || !spindle.current } on-click={()=> this.increaseSpeed(spindle, index)}>+</vBtn>
                 </div>
             </div>
         )
@@ -65,9 +101,9 @@ export default {
 
     render()
     {
-        // if ( Any.isEmpty(this.activeSpindles) ) {
-        //     return null;
-        // }
+        if ( Any.isEmpty(this.activeSpindles) ) {
+            return null;
+        }
 
         return this.ctor('renderSpindle')(Arr.first(this.activeSpindles), 0);
     }

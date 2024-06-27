@@ -18,6 +18,13 @@ export default {
 
     },
 
+    data()
+    {
+        return {
+            currentWorkplace: 0,
+        };
+    },
+
     computed: {
 
         uiFrozen() {
@@ -53,7 +60,7 @@ export default {
                     <strong>{axis.letter}</strong>
                 </div>
                 <div class="cnc-axis-status__value">
-                    <span><i>{axis.current}</i> {axis.userPosition}</span>
+                    <span><i>{axis.machinePosition}</i> {axis.userPosition}</span>
                 </div>
                 <div class="cnc-axis-status__button">
                     <vBtn color="primary" disabled={this.uiFrozen} on-click={() => this.zeroAxis(axis)}>
@@ -132,12 +139,33 @@ export default {
 .cnc-axis-status > div {
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 10px;
+}
+
+.cnc-axis-status.is-vertical > div {
+    padding: 0;
+}
+
+@media (max-width: 1024px) {
+    .cnc-axis-status > div {
+        padding: 0;
+    }
 }
 
 .cnc-axis-status__axis {
     display: flex;
     flex: 1 1 auto;
+    width: 33.332%;
+}
+
+.cnc-axis-status.is-vertical > .cnc-axis-status__axis {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .cnc-axis-status > .cnc-axis-status__axis {
+        width: 100%;
+    }
 }
 
 .cnc-axis-status__axis > div {

@@ -2,26 +2,19 @@
 import * as update from '../lib/update';
 import { setup, teardown } from '../lib/scene';
 import store from "@/store";
-import Path from "@/utils/path";
-import { Arr, Obj } from "@kizmann/pico-js";
-const holes = require('arraybuffer-loader!../demo/holes.cnc.gcode');
+import Path, { escapeFilename } from "@/utils/path";
+import { Arr, Obj, Any } from "@kizmann/pico-js";
 
 export default {
 
     name: 'CncGcodeViewer',
 
-    props: {
-
-        file: {
-            default()
-            {
-                return holes;
-            }
-        }
-
-    },
-
     computed: {
+
+        file()
+        {
+            return store.state.cnc_settings.file;
+        },
 
         xAxis()
         {
@@ -54,6 +47,11 @@ export default {
 
     watch: {
 
+        file()
+        {
+            this.loadFile();
+        },
+
         xAxis()
         {
             this.sendUpdate();
@@ -71,13 +69,22 @@ export default {
 
     },
 
+    data()
+    {
+        return {
+            gcode: null
+        };
+    },
+
     mounted()
     {
         setup(this.$refs.canvas);
 
-        this.sendUpdate();
+        if ( ! Any.isEmpty(this.file) ) {
+            this.loadFile();
+        }
 
-        this.sendFile();
+        this.sendUpdate();
     },
 
     beforeDestroy()
@@ -87,17 +94,45 @@ export default {
 
     methods: {
 
+        async loadFile()
+        {
+            if ( Any.isEmpty(this.file) ) {
+                return;
+            }
+
+            this.gcode = await store.dispatch("machine/download", {
+                filename: Path.combine('0:/gcodes/', this.file), type: "text", showSuccess: false
+            });
+
+            await this.sendFile();
+        },
+
         async sendFile()
         {
-            await update.file(this.file, (percent) => {
+            if ( Any.isEmpty(this.gcode) ) {
+                return;
+            }
+
+            await update.file(this.gcode, (percent) => {
                 this.$emit('progress', percent);
             });
+        },
+
+        async startJob()
+        {
+            let filename = Path.combine('0:/gcodes/', this.file);
+
+            if ( Any.isEmpty(this.file) ) {
+                return;
+            }
+
+            await store.dispatch("machine/sendCode", `M32 "${escapeFilename(filename)}"`);
         },
 
         sendUpdate()
         {
             update.drill({
-                X: this.xAxis, Y: this.yAxis, Z: this.zAxis,
+                X: this.xAxis*-1, Y: this.yAxis, Z: this.zAxis,
             });
         },
 
@@ -118,9 +153,21 @@ export default {
 
     },
 
+    renderJob()
+    {
+        if ( Any.isEmpty(this.file) ) {
+            return null;
+        }
+
+        return (
+            <ConfirmBtn class="cnc-gcode-viewer__job" color="primary" on-click={this.startJob}>
+                {this.$t('Start job')}
+            </ConfirmBtn>
+        );
+    },
+
     renderToolbar()
     {
-
         return (
             <div class="cnc-gcode-viewer__toolbar">
                 <vBtn color="primary" on-click={this.cameraReset}>
@@ -148,7 +195,7 @@ export default {
     {
         return (
             <div class="cnc-gcode-viewer">
-                {[this.ctor('renderToolbar')(), this.ctor('renderCanvas')()]}
+                {[this.ctor('renderToolbar')(), this.ctor('renderCanvas')(), this.ctor('renderJob')()]}
             </div>
         );
     }
@@ -191,6 +238,14 @@ export default {
 .cnc-gcode-viewer__toolbar i {
     margin-right: 8px;
     font-size: 18px !important;
+}
+
+.cnc-gcode-viewer__job {
+    z-index: 200;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
 }
 
 </style>

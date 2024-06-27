@@ -14,7 +14,23 @@ export default {
                 return false;
             },
             type: [Boolean]
-        }
+        },
+
+        speedFactorMin: {
+            default()
+            {
+                return 5;
+            },
+            type: [Number]
+        },
+
+        speedFactorMax: {
+            default()
+            {
+                return 200;
+            },
+            type: [Number]
+        },
 
     },
 
@@ -30,27 +46,19 @@ export default {
             return (store.state.machine.model.move.speedFactor !== null) ?
                 (store.state.machine.model.move.speedFactor * 100) : 100;
         },
-        speedFactorMin()
-        {
-            return Math.max(1, Math.min(100, this.speedFactor - 50));
-        },
-        speedFactorMax()
-        {
-            return Math.max(150, this.speedFactor + 50);
-        }
 
     },
 
     methods: {
 
-        decreaseSpeed()
+        async decreaseSpeed()
         {
-            console.log("decreaseSpeed");
+            await store.dispatch("machine/sendCode", `M220 S${this.speedFactor - 5}`);
         },
 
-        increaseSpeed()
+        async increaseSpeed()
         {
-            console.log('increaseSpeed');
+            await store.dispatch("machine/sendCode", `M220 S${this.speedFactor + 5}`);
         },
 
     },
@@ -76,10 +84,10 @@ export default {
                     <span>{this.$t(':value %').replace(':value', value)}</span>
                 </div>
                 <div class="cnc-machine-speed__button">
-                    <vBtn disabled={this.uiFrozen} on-click={this.decreaseSpeed}>-</vBtn>
+                    <vBtn disabled={this.uiFrozen || this.speedFactor <= this.speedFactorMin} on-click={this.decreaseSpeed}>-</vBtn>
                 </div>
                 <div class="cnc-machine-speed__button">
-                    <vBtn disabled={this.uiFrozen} on-click={this.increaseSpeed}>+</vBtn>
+                    <vBtn disabled={this.uiFrozen || this.speedFactor >= this.speedFactorMax} on-click={this.increaseSpeed}>+</vBtn>
                 </div>
             </div>
         );

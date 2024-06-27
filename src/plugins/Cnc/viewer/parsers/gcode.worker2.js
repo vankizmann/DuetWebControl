@@ -41,7 +41,11 @@ const worker = {
   parse: file =>
   {
     //Extract arguments
-    let gcode = new TextDecoder().decode(file);
+    let gcode = file;
+
+    if ( typeof gcode !== 'string' ) {
+        gcode = new TextDecoder().decode(gcode)
+    }
 
     //Variables
     const primaryVertices = [];

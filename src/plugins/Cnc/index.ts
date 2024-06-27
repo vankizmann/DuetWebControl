@@ -47,25 +47,31 @@ registerCategory('Cnc', 'mdi-ruler-square-compass', 'CNC', false, 500).then(() =
 
 });
 
-interface Tooloffset {
-    loop: number;
-    axis: string;
+interface CncSettings {
+    step: number;
+    drill: number;
 }
 
 declare module "@/store" {
     interface RootState {
-        tooloffset: Tooloffset;
+        cnc_settings: CncSettings;
     }
 }
 
-store.registerModule('tooloffset', {
+store.registerModule('cnc_settings', {
     namespaced: true,
     state: {
-        axis: '', loop: 0
+        step: 0.1, drill: 0, file: null
     },
     mutations: {
-        patch (state) {
-            state.loop++;
+        updateStep (state, val) {
+            state.step = val;
+        },
+        updateDrill (state, val) {
+            state.drill = val;
+        },
+        updateFile (state, val) {
+            state.file = val;
         }
     }
 });

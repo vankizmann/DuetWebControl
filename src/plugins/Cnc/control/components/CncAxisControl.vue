@@ -17,14 +17,20 @@ export default {
 
     },
 
-    data()
-    {
-        return {
-            size: Arr.first(this.sizes)
-        };
-    },
+    // data()
+    // {
+    //     return {
+    //         size: Arr.first(this.sizes)
+    //     };
+    // },
+
 
     computed: {
+
+        size()
+        {
+            return store.state.cnc_settings.step;
+        },
 
         uiFrozen() {
             return store.getters["uiFrozen"];
@@ -53,7 +59,7 @@ export default {
         async sendAction(action)
         {
             await store.dispatch("machine/sendCode",
-                `M98 P"cnc-axis-${action}.g"`);
+                `M98 P"cnc/control-${action}.g"`);
         },
 
         async sendStep(letter, action)
@@ -82,7 +88,7 @@ export default {
                 target = target + 1;
             }
 
-            this.size = this.sizes[target];
+            store.commit('cnc_settings/updateStep', this.sizes[target]);
         },
 
         stepDown()
@@ -97,7 +103,7 @@ export default {
                 target = target - 1;
             }
 
-            this.size = this.sizes[target];
+            store.commit('cnc_settings/updateStep', this.sizes[target]);
         }
 
     },
@@ -302,6 +308,7 @@ export default {
 }
 
 .cnc-axis-control__row {
+    flex: 1 1 auto;
     position: relative;
     width: 100%;
     display: flex;

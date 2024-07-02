@@ -34,6 +34,16 @@ export default {
 
     methods: {
 
+        async toolchangePark()
+        {
+            await store.dispatch("machine/sendCode", `M98 P"cnc/toolchange-park.g"`);
+        },
+
+        async toolchangeProbe()
+        {
+            await store.dispatch("machine/sendCode",`M98 P"cnc/toolchange-probe.g"`);
+        },
+
         async sendAction(action)
         {
             let code = `M98 P"cnc/probe-${action}.g" S100 ` +
@@ -222,10 +232,38 @@ export default {
         );
     },
 
+    renderToolchangePark()
+    {
+        return (
+            <div class="cnc-probe-control__park">
+                <ConfirmBtn color="primary" label="Park tool" block={true}>
+                    <vIcon>mdi-home</vIcon> Park tool
+                </ConfirmBtn>
+            </div>
+        );
+    },
+
+    renderToolchangeProbe()
+    {
+        return (
+            <div class="cnc-probe-control__probe">
+                <ConfirmBtn color="primary" label="Change tool" block={true}>
+                    <vIcon>mdi-tools</vIcon> Change tool
+                </ConfirmBtn>
+            </div>
+        );
+    },
+
     render()
     {
         return (
             <div class="cnc-probe-control">
+                <div class="cnc-probe-control__toolchange">
+                    {[
+                        this.ctor('renderToolchangePark')(),
+                        this.ctor('renderToolchangeProbe')(),
+                    ]}
+                </div>
                 <div class="cnc-probe-control__workpiece">
                     {[
                         this.ctor('renderButton')('x-high'),
@@ -376,6 +414,29 @@ export default {
 .cnc-axis-control__drill-size span {
     font-size: 17px;
     font-weight: 500;
+}
+
+.cnc-probe-control__toolchange {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.cnc-probe-control__toolchange > div {
+    flex: 1 1 auto;
+    width: 50%;
+}
+
+.cnc-probe-control__toolchange i {
+    font-size: 18px !important;
+    margin-right: 5px;
+}
+
+.cnc-probe-control__park {
+    margin-right: 15px;
+}
+
+.cnc-probe-control__probe {
+    margin-left: 15px;
 }
 
 </style>

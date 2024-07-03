@@ -236,7 +236,7 @@ export default {
     {
         return (
             <div class="cnc-probe-control__park">
-                <ConfirmBtn color="primary" label="Park tool" block={true}>
+                <ConfirmBtn color="primary" label="Park tool" block={true} on-click={this.toolchangePark}>
                     <vIcon>mdi-home</vIcon> Park tool
                 </ConfirmBtn>
             </div>
@@ -247,7 +247,7 @@ export default {
     {
         return (
             <div class="cnc-probe-control__probe">
-                <ConfirmBtn color="primary" label="Change tool" block={true}>
+                <ConfirmBtn color="primary" label="Change tool" block={true} on-click={this.toolchangeProbe}>
                     <vIcon>mdi-tools</vIcon> Change tool
                 </ConfirmBtn>
             </div>

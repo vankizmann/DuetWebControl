@@ -40,6 +40,7 @@ G38.2 Z-200                                 ; loose probe z
 var nextLoosePosition = move.axes[2].userPosition;
 
 G10 L20 P0 Z0                               ; set zero position (rrf bug)
+G0 Z1                                       ; move z up 1mm
 M558 F50                                    ; Set low feedrate
 G38.2 Z-2                                   ; precise probe z
 
